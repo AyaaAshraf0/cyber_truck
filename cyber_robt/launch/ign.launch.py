@@ -10,6 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     cyber_Robot_pkg = FindPackageShare(package="cyber_robt").find("cyber_robt")
     urdf_model_path = os.path.join(cyber_Robot_pkg,'urdf','cyber_robt.urdf.xacro')
+    world_file = os.path.join(cyber_Robot_pkg,'worlds','classroom.sdf')
     
     robot_desc = Command(["xacro ",urdf_model_path," use_ignition:=","true"])
     # Load URDF contents as string
@@ -27,6 +28,8 @@ def generate_launch_description():
                 # "frame_prefix": "/cyber_robt/",
             }
         ],
+        remappings=[('/clock', '/fast_clock'),]
+
     )
     
      # Publish joint states if GUI is not enabled
@@ -35,34 +38,39 @@ def generate_launch_description():
         executable="joint_state_publisher",
         name="joint_state_publisher",
         parameters=[{"use_sim_time": True}],
-        
+        # remappings=[('/clock', '/fast_clock'),]
+
         
     )
     
     ign_gazebo = ExecuteProcess(
-        cmd=["ign","gazebo","-r",'empty.sdf'],
+        cmd=["ign","gazebo","-r",world_file],
         output="screen",
     )
     
     spawn_entity = Node(
         package="ros_ign_gazebo",
         executable="create",
-        arguments=["-name", "cyber_robt", "-topic", "robot_description"],  # Robot name in the simulation  # Source topic for robot description  # Spawn position (X)  # Spawn position (Y)  # Spawn position (Z)  # Spawn orientation (Yaw)
+        arguments=["-name", "cyber_robt", "-topic", "robot_description",
+                   '-x','0',
+                   '-y', '-2.05',
+                    '-z', '0.5',
+                    '-Y', '1.5708'
+                    ],  # Robot name in the simulation  # Source topic for robot description  # Spawn position (X)  # Spawn position (Y)  # Spawn position (Z)  # Spawn orientation (Yaw)
         output="screen",
         parameters=[{"use_sim_time": True, 
-                     '-X':'0',
-                     '-Y': '0',
-                     '-Z': '0.5',
+                     
                      
                      }],
-        
+        remappings=[('/clock', '/fast_clock'),]
+
     )
 
     bridge= Node(
         package="ros_ign_bridge",
         executable="parameter_bridge",
         arguments=[
-                    "/world/empty/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
+                    # "/world/empty/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock",
                     "/joint_states@sensor_msgs/msg/JointState@ignition.msgs.Model",
                     "/odom@nav_msgs/msg/Odometry@ignition.msgs.Odometry",
                     "/lidar@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan",
@@ -74,8 +82,8 @@ def generate_launch_description():
     
         output="screen",
         remappings=[
-            ('/model/cyber_robt/tf', '/tf'), ('/lidar','/scan')
-                   ]
+            ('/model/cyber_robt/tf', '/tf'), ('/lidar','/scan'),
+                  ('/clock', '/fast_clock') ]
     )
 
     lidar_tf_static = Node(
@@ -83,9 +91,22 @@ def generate_launch_description():
         executable= "static_transform_publisher",
         name= "static_lidar_tf",
         parameters=[{"use_sim_time": True}],
-        arguments=["0","0","0","0","0","0","Lidar","cyber_robt/base_link/gpu_lidar"]
+        arguments=["0","0","0","0","0","0","Lidar","cyber_robt/base_link/gpu_lidar"],
+        remappings=[('/clock', '/fast_clock'),]
     )
 
+    clock_bridge= Node(
+        package="ros_ign_bridge",
+        executable="parameter_bridge",
+        name="clock_bridge",
+        arguments=[
+                    "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+                      
+        ],
+        output="screen",
+        parameters=[{"use_sim_time": True}],
+        remappings=[('/clock', '/fast_clock'),]
+    ) 
     ld = LaunchDescription()
     # Add launch actions to start Gazebo, the robot state publisher, and RViz
     ld.add_action(ign_gazebo)
@@ -93,7 +114,7 @@ def generate_launch_description():
     ld.add_action(joint_state_publisher)
     ld.add_action(spawn_entity)
     ld.add_action(bridge)
-    # ld.add_action(clock_bridge)
+    ld.add_action(clock_bridge)
     ld.add_action(lidar_tf_static)
     # ld.add_action(rviz_launch)
     

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="cyber_robt">
+  <!-- Arguments -->
+  <xacro:arg name="use_ignition" default="true"/>
+  <!-- Include robot structure -->
+  <xacro:include filename="$(find cyber_robt)/urdf/cyber_robt_base.urdf.xacro"/>
+  <!-- Include plugin sets -->
+
+
+ 
+
+  <!-- Conditionally load plugins-->
+  <xacro:if value="$(arg use_ignition)">
+    <xacro:include filename="$(find cyber_robt)/urdf/ignition_plugins.xacro"/>
+  </xacro:if>
+  <xacro:unless value="$(arg use_ignition)">
+    <xacro:include filename="$(find cyber_robt)/urdf/classic_plugins.xacro"/>
+  </xacro:unless>
+
+</robot>

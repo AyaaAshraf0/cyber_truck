@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+  <!-- Macro to insert Gazebo Classic plugins -->
+<xacro:macro name="classic_plugins" xmlns:xacro="http://ros.org/wiki/xacro"
+>
+
+<gazebo reference="Lidar">
+    <sensor name="lidar" type="ray">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>5</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>5.000000</resolution>
+            <min_angle>0.000000</min_angle>
+            <max_angle>6.280000</max_angle>
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.120000</min>
+          <max>3.5</max>
+          <resolution>0.015000</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="scan" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <output_type>sensor_msgs/LaserScan</output_type>
+        <frame_name>Lidar</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+
+  <gazebo reference="imu_link">
+    <gravity>true</gravity>
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>true</visualize>
+      <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+        <topicName>/imu</topicName>
+        <bodyName>imu_link</bodyName>
+        <updateRateHZ>10.0</updateRateHZ>
+        <gaussianNoise>0.0</gaussianNoise>
+        <xyzOffset>0 0 0</xyzOffset>
+        <rpyOffset>0 0 0</rpyOffset>
+        <frameName>imu_link</frameName>
+        <initialOrientationAsReference>false</initialOrientationAsReference>
+        <ros>
+          <remapping>~/out:=imu/data</remapping>
+        </ros>
+      </plugin>
+      <pose>0 0 0 0 0 0</pose>
+    </sensor>
+  </gazebo>
+<gazebo>
+  <plugin filename="libgazebo_ros_diff_drive.so" name="diff_drive">
+    <!-- Update rate in Hz -->
+    <update_rate>50</update_rate>
+
+    
+    <!-- wheels -->
+    <left_joint>W_F_L_joint</left_joint>
+    <right_joint>W_F_R_joint</right_joint> 
+
+    <!-- kinematics -->
+    <wheel_separation>0.35</wheel_separation>
+    <wheel_diameter>0.12</wheel_diameter> <!-- replace with actual value -->
+
+    <!-- limits -->
+    <max_linear_acceleration>0.1</max_linear_acceleration>
+
+    <!-- input -->
+    <command_topic>/cmd_vel</command_topic>
+
+    <!-- output -->
+    <publish_odom>true</publish_odom>
+    <publish_odom_tf>true</publish_odom_tf>
+    <publish_wheel_tf>true</publish_wheel_tf>
+
+    <odometry_topic>odom</odometry_topic>
+    <odometry_frame>odom</odometry_frame>
+    <robot_base_frame>base_link</robot_base_frame>
+  </plugin>
+
+  <plugin filename="libgazebo_ros_joint_state_publisher.so" name="joint_state_publisher">
+    <topic>joint_states</topic>
+    <joint_name>W_F_L_joint</joint_name>
+    <joint_name>W_F_R_joint</joint_name>
+  </plugin>
+</gazebo>
+
+  </xacro:macro>

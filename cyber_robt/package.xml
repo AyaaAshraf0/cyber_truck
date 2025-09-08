@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>cyber_robt</name>
+  <version>1.0.0</version>
+  <description>
+    URDF Description package for cyber_robt.
+    Contains configuration data, 3D models, and launch files.
+  </description>
+
+  <maintainer email="you@email.com">Your Name</maintainer>
+  <license>BSD</license>
+  <author>Your Name</author>
+
+  <!-- Build tool for ROS2 -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Runtime dependencies -->
+  <depend>robot_state_publisher</depend>
+  <depend>joint_state_publisher</depend>
+  <depend>joint_state_publisher_gui</depend>
+  <depend>rviz2</depend>
+  <depend>gazebo_ros</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

@@ -28,7 +28,7 @@ def generate_launch_description():
                 # "frame_prefix": "/cyber_robt/",
             }
         ],
-        remappings=[('/clock', '/fast_clock'),]
+        # remappings=[('/clock', '/fast_clock'),]
 
     )
     

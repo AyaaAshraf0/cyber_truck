@@ -4,8 +4,8 @@ bt_navigator:
   ros__parameters:
     use_sim_time: true
     global_frame: map
-    robot_base_frame: simple_robot/base_link
-    odom_topic: simple_robot/odom
+    robot_base_frame: base_link
+    odom_topic: odom
     bt_loop_duration: 10
     default_server_timeout: 20
     wait_for_service_timeout: 1000
@@ -73,8 +73,8 @@ bt_navigator_navigate_to_pose_rclcpp_node:
 controller_server:
   ros__parameters:
     use_sim_time: true
-    global_frame: simple_robot/odom
-    robot_base_frame: simple_robot/base_link
+    global_frame: odom
+    robot_base_frame: base_link
     controller_frequency: 10.0
     min_x_velocity_threshold: 0.001
     min_y_velocity_threshold: 0.5
@@ -106,11 +106,11 @@ controller_server:
       debug_trajectory_details: true
       min_vel_x: 0.0
       min_vel_y: 0.0
-      max_vel_x: 0.26
+      max_vel_x: 0.5
       max_vel_y: 0.0
       max_vel_theta: 1.0
       min_speed_xy: 0.0
-      max_speed_xy: 0.26
+      max_speed_xy: 0.5
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
@@ -148,19 +148,19 @@ local_costmap:
     ros__parameters:
       update_frequency: 5.0
       publish_frequency: 2.0
-      global_frame: simple_robot/odom
-      robot_base_frame: simple_robot/base_link
+      global_frame: odom
+      robot_base_frame: base_link
       use_sim_time: true
       rolling_window: true
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.25
+      robot_radius: 0.4
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.25
       voxel_layer:
         plugin: "nav2_costmap_2d::VoxelLayer"
         enabled: true
@@ -172,7 +172,7 @@ local_costmap:
         mark_threshold: 0
         observation_sources: scan
         scan:
-          topic: /lidar
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -192,9 +192,9 @@ global_costmap:
       update_frequency: 1.0
       publish_frequency: 1.0
       global_frame: map
-      robot_base_frame: simple_robot/base_link
+      robot_base_frame: base_link
       use_sim_time: true
-      robot_radius: 0.25
+      robot_radius: 0.4
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -203,7 +203,7 @@ global_costmap:
         enabled: true
         observation_sources: scan
         scan:
-          topic: /lidar
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: true
           marking: true
@@ -218,7 +218,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         cost_scaling_factor: 3.0
-        inflation_radius: 0.35
+        inflation_radius: 0.25
       always_send_full_costmap: true
 
 

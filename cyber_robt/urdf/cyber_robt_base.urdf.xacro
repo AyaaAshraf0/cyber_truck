@@ -76,9 +76,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder radius="0.06" length="0.05"/> -->
-        <mesh
-          filename="package://cyber_robt/meshes/W_B_L.STL" />
+        <cylinder radius="0.06" length="0.06"/>
+        <!-- <mesh
+          filename="package://cyber_robt/meshes/W_B_L.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -94,12 +94,12 @@
       link="W_B_L" />
     <axis
       xyz="0 0 1" />
-    <!-- <limit
+    <limit
       effort="10"
       velocity="10" />
     <dynamics
       damping="0.1"
-      friction="0.1" /> -->
+      friction="0.1" />
     <mimic joint="W_F_L_joint"/>
   </joint>
   <link
@@ -137,9 +137,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder radius="0.06" length="0.05"/> -->
-        <mesh
-          filename="package://cyber_robt/meshes/W_F_L.STL" />
+        <cylinder radius="0.06" length="0.06"/>
+        <!-- <mesh
+          filename="package://cyber_robt/meshes/W_F_L.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -155,12 +155,12 @@
       link="W_F_L" />
     <axis
       xyz="0 0 1" />
-    <!-- <limit
+    <limit
       effort="10"
       velocity="10" />
     <dynamics
       damping="0.1"
-      friction="0.1" /> -->
+      friction="0.1" />
   </joint>
   <link
     name="W_B_R">
@@ -197,9 +197,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder radius="0.06" length="0.05"/> -->
-        <mesh
-          filename="package://cyber_robt/meshes/W_B_R.STL" />
+        <cylinder radius="0.06" length="0.06"/>
+        <!-- <mesh
+          filename="package://cyber_robt/meshes/W_B_R.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -208,19 +208,19 @@
     type="continuous">
     <origin
       xyz="-0.19374 -0.16473 0.01975"
-      rpy="-1.5708 0 0" />
+      rpy="1.5708 0 0" />
     <parent
       link="base_link" />
     <child
       link="W_B_R" />
     <axis
-      xyz="0 0 1" />
-    <!-- <limit
+      xyz="0 0 -1" />
+    <limit
       effort="10"
       velocity="10" />
     <dynamics
       damping="0.1"
-      friction="0.1" /> -->
+      friction="0.1" />
     <mimic joint="W_F_R_joint"/>
 
   </joint>
@@ -259,9 +259,9 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <!-- <cylinder radius="0.06" length="0.05"/> -->
-        <mesh
-          filename="package://cyber_robt/meshes/W_F_R.STL" />
+        <cylinder radius="0.06" length="0.06"/>
+        <!-- <mesh
+          filename="package://cyber_robt/meshes/W_F_R.STL" /> -->
       </geometry>
     </collision>
   </link>
@@ -270,19 +270,19 @@
     type="continuous">
     <origin
       xyz="0.17626 -0.16473 0.01975"
-      rpy="-1.5708 0 0" />
+      rpy="1.5708 0 0" />
     <parent
       link="base_link" />
     <child
       link="W_F_R" />
     <axis
-      xyz="0 0 1" />
-    <!-- <limit
+      xyz="0 0 -1" />
+    <limit
       effort="10"
       velocity="10" />
     <dynamics
       damping="0.1"
-      friction="0.1" /> -->
+      friction="0.1" />
   </joint>
   <link
     name="Lidar">
@@ -579,4 +579,3 @@
       xyz="0 0 0" />
   </joint> -->
 </xacro:macro>
-

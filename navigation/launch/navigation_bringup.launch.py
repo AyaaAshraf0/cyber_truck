@@ -10,7 +10,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 navigation_dir = get_package_share_directory('navigation')
 
-map_yaml_file = os.path.join(navigation_dir,"maps","simple_world_map.yaml")
+map_yaml_file = os.path.join(navigation_dir,"maps","classroom_map.yaml")
 
 lifecycle_nodes = ['map_server','amcl' ]
 
@@ -35,9 +35,9 @@ def generate_launch_description():
                 executable='amcl',
                 name='amcl',
                 output='screen',
-                parameters=[{"base_frame_id":"simple_robot/base_link",
-                             "odom_frame_id":"simple_robot/odom",
-                             "scan_topic":"lidar",
+                parameters=[{"base_frame_id":"base_link",
+                             "odom_frame_id":"odom",
+                             "scan_topic":"scan",
                              }],
                 remappings=[("/clock","/fast_clock")],
     )

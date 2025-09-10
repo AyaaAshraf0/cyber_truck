@@ -4,10 +4,10 @@
     <!-- <plugin name="ignition::gazebo::systems::JointStatePublisher"
         filename="ignition-gazebo-joint-state-publisher-system"/> 
 -->
-      <!--   <plugin
+        <plugin
             filename="gz-sim-physics-system"
             name="gz::sim::systems::Physics">
-        </plugin>-->
+        </plugin>
      <plugin
         filename="gz-sim-scene-broadcaster-system"
         name="gz::sim::systems::SceneBroadcaster">
@@ -85,7 +85,7 @@
     <gazebo>
     <plugin filename="libgz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
         <!-- Update rate in Hz -->
-        <update_rate>20</update_rate>
+        <update_rate>100</update_rate>
 
         
         <!-- wheels -->
@@ -95,7 +95,7 @@
         <right_joint>W_B_R_joint</right_joint>
 
         <!-- kinematics -->
-        <wheel_separation>0.4</wheel_separation>
+        <wheel_separation>0.9</wheel_separation>
         <wheel_radius>0.06</wheel_radius> <!-- replace with actual value -->
 
         <!-- limits -->

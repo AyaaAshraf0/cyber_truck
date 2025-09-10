@@ -38,7 +38,7 @@ def generate_launch_description():
         executable="joint_state_publisher",
         name="joint_state_publisher",
         parameters=[{"use_sim_time": True}],
-        # remappings=[('/clock', '/fast_clock'),]
+        remappings=[('/world/classroom/clock', '/fast_clock'),]
 
         
     )
@@ -62,7 +62,7 @@ def generate_launch_description():
                      
                      
                      }],
-        remappings=[('/clock', '/fast_clock'),]
+        remappings=[('/world/classroom/clock', '/fast_clock'),]
 
     )
 
@@ -83,7 +83,7 @@ def generate_launch_description():
         output="screen",
         remappings=[
             ('/model/cyber_robt/tf', '/tf'), ('/lidar','/scan'),
-                  ('/clock', '/fast_clock') ]
+                  ('/world/classroom/clock', '/fast_clock') ]
     )
 
     lidar_tf_static = Node(
@@ -92,7 +92,7 @@ def generate_launch_description():
         name= "static_lidar_tf",
         parameters=[{"use_sim_time": True}],
         arguments=["0","0","0","0","0","0","Lidar","cyber_robt/base_link/gpu_lidar"],
-        remappings=[('/clock', '/fast_clock'),]
+        remappings=[('/world/classroom/clock', '/fast_clock'),]
     )
 
     clock_bridge= Node(
@@ -100,18 +100,18 @@ def generate_launch_description():
         executable="parameter_bridge",
         name="clock_bridge",
         arguments=[
-                    "/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
+                    "/world/classroom/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock",
                       
         ],
         output="screen",
         parameters=[{"use_sim_time": True}],
-        remappings=[('/clock', '/fast_clock'),]
+        remappings=[('/world/classroom/clock', '/fast_clock'),]
     ) 
     ld = LaunchDescription()
     # Add launch actions to start Gazebo, the robot state publisher, and RViz
     ld.add_action(ign_gazebo)
     ld.add_action(robot_state_publisher)
-    ld.add_action(joint_state_publisher)
+    # ld.add_action(joint_state_publisher)
     ld.add_action(spawn_entity)
     ld.add_action(bridge)
     ld.add_action(clock_bridge)

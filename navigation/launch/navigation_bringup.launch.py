@@ -17,7 +17,7 @@ lifecycle_nodes = ['map_server','amcl' ]
 nav2_bringup_dir = get_package_share_directory('nav2_bringup')
 navigation_launch_file = os.path.join(nav2_bringup_dir,'launch','navigation_launch.py')
 navigation_params = os.path.join(navigation_dir,'config','navigation.yaml')
-
+amcl_params = os.path.join(navigation_dir,'config','amcl.yaml')
 def generate_launch_description():
     
     map_server = Node(
@@ -38,7 +38,7 @@ def generate_launch_description():
                 parameters=[{"base_frame_id":"base_link",
                              "odom_frame_id":"odom",
                              "scan_topic":"scan",
-                             }],
+                             }, amcl_params ],
                 remappings=[("/clock","/fast_clock")],
     )
     

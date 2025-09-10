@@ -1,0 +1,29 @@
+amcl:
+  ros__parameters:
+    use_sim_time: true
+    alpha1: 0.2    # rotation noise from rotation
+    alpha2: 0.2    # rotation noise from translation
+    alpha3: 0.2    # translation noise from translation
+    alpha4: 0.2    # translation noise from rotation
+    odom_model_type: "diff"
+
+    min_particles: 800
+    max_particles: 2000
+    kld_err: 0.05
+    kld_z: 0.99
+
+    update_min_d: 0.25   # update when moved 25cm
+    update_min_a: 0.2    # update when rotated 0.2 rad (~11 deg)
+
+    resample_interval: 1
+    transform_tolerance: 0.5
+    recovery_alpha_slow: 0.001
+    recovery_alpha_fast: 0.1
+
+    laser_min_range: 0.1
+    laser_max_range: 3.5
+    laser_likelihood_max_dist: 2.0
+    laser_model_type: "likelihood_field"
+
+    z_hit: 0.9
+    z_rand: 0.1

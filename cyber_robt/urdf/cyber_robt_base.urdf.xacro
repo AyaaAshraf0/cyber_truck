@@ -48,7 +48,7 @@
         xyz="1.04621901142465E-08 7.33407984343515E-09 0.00451444303412896"
         rpy="0 0 0" />
       <mass
-        value="0.3" />
+        value="0.110835075707755" />
       <inertia
         ixx="0.000173950330336761"
         ixy="-9.00569003291215E-11"
@@ -76,7 +76,7 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <cylinder radius="0.06" length="0.05"/>
         <!-- <mesh
           filename="package://cyber_robt/meshes/W_B_L.STL" /> -->
       </geometry>
@@ -109,7 +109,7 @@
         xyz="1.04755673718815E-08 7.32929028579576E-09 0.0045144429988957"
         rpy="0 0 0" />
       <mass
-        value="0.3" />
+        value="0.110835075707755" />
       <inertia
         ixx="0.000173950330312339"
         ixy="-9.00559008468017E-11"
@@ -137,7 +137,7 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <cylinder radius="0.06" length="0.05"/>
         <!-- <mesh
           filename="package://cyber_robt/meshes/W_F_L.STL" /> -->
       </geometry>
@@ -169,7 +169,7 @@
         xyz="-1.04530648581402E-08 7.33744742742459E-09 -0.00451444301990683"
         rpy="0 0 0" />
       <mass
-        value="0.3" />
+        value="0.110835075707755" />
       <inertia
         ixx="0.000173950330329626"
         ixy="9.00577592178687E-11"
@@ -197,7 +197,7 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <cylinder radius="0.06" length="0.05"/>
         <!-- <mesh
           filename="package://cyber_robt/meshes/W_B_R.STL" /> -->
       </geometry>
@@ -231,7 +231,7 @@
         xyz="-1.04612485063438E-08 7.3332188099684E-09 -0.00451444303336418"
         rpy="0 0 0" />
       <mass
-        value="0.3" />
+        value="0.110835075707755" />
       <inertia
         ixx="0.000173950330336794"
         ixy="9.00569289950247E-11"
@@ -259,7 +259,7 @@
         xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <cylinder radius="0.06" length="0.06"/>
+        <cylinder radius="0.06" length="0.05"/>
         <!-- <mesh
           filename="package://cyber_robt/meshes/W_F_R.STL" /> -->
       </geometry>

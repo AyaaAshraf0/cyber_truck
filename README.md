@@ -41,7 +41,7 @@ Expected output:
 Ignition Gazebo opens with the custom wider_classroom.sdf world.
 The Cyber Truck robot spawns in the environment.
 
-If you faced an error of couldnot resolve mesh file, you need to set this environment variable:
+If you face an error of couldnot resolve mesh file, you need to set this environment variable:
 ```bash
 export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:src/cyber_truck
 ```

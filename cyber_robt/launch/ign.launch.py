@@ -10,7 +10,7 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     cyber_Robot_pkg = FindPackageShare(package="cyber_robt").find("cyber_robt")
     urdf_model_path = os.path.join(cyber_Robot_pkg,'urdf','cyber_robt.urdf.xacro')
-    world_file = os.path.join(cyber_Robot_pkg,'worlds','classroom.sdf')
+    world_file = os.path.join(cyber_Robot_pkg,'worlds','wider_classroom.sdf')
     
     robot_desc = Command(["xacro ",urdf_model_path," use_ignition:=","true"])
     # Load URDF contents as string

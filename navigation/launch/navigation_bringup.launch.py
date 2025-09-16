@@ -10,7 +10,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 navigation_dir = get_package_share_directory('navigation')
 
-map_yaml_file = os.path.join(navigation_dir,"maps","classroom_map.yaml")
+map_yaml_file = os.path.join(navigation_dir,"maps","wider_classroom_map.yaml")
 
 lifecycle_nodes = ['map_server','amcl' ]
 

@@ -21,6 +21,11 @@
   <depend>rviz2</depend>
   <depend>gazebo_ros</depend>
 
+  <depend>ros_ign_gazebo</depend>
+  <depend>ros_ign_bridge</depend>
+  <depend>tf2_ros</depend>
+  <depend>xacro</depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

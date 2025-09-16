@@ -26,7 +26,8 @@ def generate_launch_description():
                 name='map_server',
                 output='screen',
                 parameters=[{"yaml_filename":map_yaml_file,
-                             "use_sim_time":True}],
+                             "use_sim_time":True
+                             }],
                 remappings=[("/clock","/fast_clock")],
     )
     

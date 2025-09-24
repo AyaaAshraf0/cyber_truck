@@ -52,7 +52,7 @@ Make sure you are inside your workspace, run:
 cd /path/to/ws
 ```
 ```bash
-rviz2 -f src/cyber_robt/config/cyber_truck.rviz 
+rviz2 -d src/cyber_truck/cyber_robt/config/cyber_truck.rviz 
 ```
 Expected output:
 RViz2 opens.
